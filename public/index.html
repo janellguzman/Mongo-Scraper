@@ -1,49 +1,374 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Scraping With Mongoose</title>
-    <style>
-      body { background-color: #F2F6D0 }
-      #wrapper {
-        width: 960px;
-        margin-left: auto;
-        margin-right: auto;
-        padding-top: 5%;
-      }
-      #articles {
-        display: inline-block;
-        overflow: auto;
-        width: 60%;
-        height: 700px;
-      }
-      #notes {
-        float: right;
-        width: 30%;
-      }
-      textarea, input {
-        display: block;
-        width: 100%;
-        background-color: #FCF5C7;
-      }
-      input {
-        height: 36px;
-        font-size: 24px;
-      }
-      textarea {
-        height: 200px;
-        font-size: 18px;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="wrapper">
-      <h1>Note Scraper</h1>
-      <h2><i>If you can do this...the homework should be no problem.</i></h2>
-      <div id="articles"></div>
-      <div id="notes"></div>
+<html lang="en">
+
+<head>
+  <title>Mongo Scraper</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.0.0/materia/bootstrap.min.css"/>
+  <link href="https://fonts.googleapis.com/css?family=Cormorant+SC" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="/">Mongo Scraper</a>
+  <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false"
+    aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/saved">Saved Articles</a>
+      </li>
+      <li class="nav-item">
+        <a class="btn btn-danger scrape-new">SCRAPE NEW ARTICLES!</a>
+      </li>
+      <li class="nav-item">
+        <a class="btn btn-danger clear">CLEAR ARTICLES!</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="jumbotron text-center">
+  <div class="overlay">
+  </div>
+  <div class="background-image">
+  </div>
+  <div class="caption">
+    <h1>Mongo Scraper</h1>
+    <p>New York Times Edition</p>
+  </div>
+</div>
+<div class="container-fluid article-container">
+  <div data-_id="5b405e513ca7b60014b876dd" class="card">
+    <div class="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href="https://www.nytimes.com/2018/07/06/opinion/surfing-autism.html">The Lure of the Surfing Life</a>
+        <a class="btn btn-success save">Save Article</a>
+      </h3>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="app.js"></script>
-  </body>
+    <div class="card-body">It’s about catching a wave, and so much more.</div>
+  </div>
+    <div data-_id="5b405e513ca7b60014b876de" class="card">
+    <div class="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href="https://www.nytimes.com/2018/07/05/realestate/house-hunting-greenpoint.html">Trading Chelsea Clatter for Greenpoint Calm</a>
+        <a class="btn btn-success save">Save Article</a>
+      </h3>
+    </div>
+    <div class="card-body">Living on Eighth Avenue was fun, but after six years Emery Myers wanted some peace and quiet — not to mention a garden. Walls were optional.</div>
+  </div>
+    <div data-_id="5b405e513ca7b60014b876dc" class="card">
+    <div class="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href="https://www.nytimes.com/2018/07/06/opinion/trumps-immigrants-military.html">Trump’s New Targets Are Immigrants in the Military</a>
+        <a class="btn btn-success save">Save Article</a>
+      </h3>
+    </div>
+    <div class="card-body">Congress must protect service members from a xenophobic commander in chief.</div>
+  </div>
+    <div data-_id="5b405e513ca7b60014b876db" class="card">
+    <div class="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href="https://www.nytimes.com/2018/07/06/opinion/democrats-fight-trump-supreme-court.html">Democrats: Do Not Surrender the Judiciary</a>
+        <a class="btn btn-success save">Save Article</a>
+      </h3>
+    </div>
+    <div class="card-body">Resist President Trump’s radical court picks, from the Supreme Court on down. This is both a sprint and a marathon.</div>
+  </div>
+    <div data-_id="5b405e513ca7b60014b876da" class="card">
+    <div class="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href="https://www.nytimes.com/2018/07/06/books/review/ottessa-moshfegh-my-year-of-rest-and-relaxation.html">Sleeping a Year Away in Ottessa Moshfegh’s Novel</a>
+        <a class="btn btn-success save">Save Article</a>
+      </h3>
+    </div>
+    <div class="card-body">In “My Year of Rest and Relaxation,” a darkly comic novel, a young Columbia graduate seeks spiritual renewal through slumber, our critics writes.</div>
+  </div>
+    <div data-_id="5b405e513ca7b60014b876d9" class="card">
+    <div class="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href="https://www.nytimes.com/2018/07/05/fashion/valentino-fendi-gaultier-couture.html">Fendi and Valentino Declare Independence</a>
+        <a class="btn btn-success save">Save Article</a>
+      </h3>
+    </div>
+    <div class="card-body">As the couture shows came to an end, there were fireworks of the most creative kind.</div>
+  </div>
+    <div data-_id="5b405e513ca7b60014b876d8" class="card">
+    <div class="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href="https://www.nytimes.com/2018/07/06/movies/paul-rudd-ant-man-nice-guy.html">Paul Rudd, Larger Than Life but Still Nice</a>
+        <a class="btn btn-success save">Save Article</a>
+      </h3>
+    </div>
+    <div class="card-body">Mr. Rudd of “Ant-Man and the Wasp” talks about his midlife foray into Marvel superherodom, the spoils of fame and the burden of being so darn likable.</div>
+  </div>
+    <div data-_id="5b405e513ca7b60014b876d6" class="card">
+    <div class="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href="https://www.nytimes.com/2018/07/05/dining/yatala-pies-review.html">Yatala Pies Has Served Nostalgia for More Than 130 Years. Arguably.</a>
+        <a class="btn btn-success save">Save Article</a>
+      </h3>
+    </div>
+    <div class="card-body">The popular, retro Queensland restaurant bakes many varieties in old-fashioned ceramic ovens.</div>
+  </div>
+    <div data-_id="5b405e513ca7b60014b876d7" class="card">
+    <div class="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href="https://www.nytimes.com/2018/07/05/world/asia/kim-dotcom-loses-appeal-extradition.html">Internet Renegade Kim Dotcom Loses Appeal on Extradition to U.S.</a>
+        <a class="btn btn-success save">Save Article</a>
+      </h3>
+    </div>
+    <div class="card-body">Mr. Dotcom, a New Zealand resident, has been accused of copyright infringement and money laundering tied to illegal downloads that generated tens of millions of dollars.</div>
+  </div>
+    <div data-_id="5b405e513ca7b60014b876d3" class="card">
+    <div class="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href="https://www.nytimes.com/2018/05/02/nyregion/summer-nyc-things-to-do.html">It’s Summer. Finally.</a>
+        <a class="btn btn-success save">Save Article</a>
+      </h3>
+    </div>
+    <div class="card-body">Our new limited-run newsletter will spotlight New York City’s coolest summer activities each week. Food and drink included.</div>
+  </div>
+    <div data-_id="5b405e513ca7b60014b876d4" class="card">
+    <div class="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href="https://www.nytimes.com/series/gender-letter">Gender Letter</a>
+        <a class="btn btn-success save">Save Article</a>
+      </h3>
+    </div>
+    <div class="card-body">Subscribe to the Gender Letter: a weekly take on news, trends and culture by our gender editor, Jessica Bennett. Get it delivered to your inbox.</div>
+  </div>
+    <div data-_id="5b405e513ca7b60014b876d5" class="card">
+    <div class="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href="https://www.nytimes.com/2018/07/05/opinion/trump-australian-refugees.html">A Lesson in Demonizing Refugees</a>
+        <a class="btn btn-success save">Save Article</a>
+      </h3>
+    </div>
+    <div class="card-body">Trump’s preoccupation with foreigners “taking advantage” of Americans could still usher in an Australian-style future.</div>
+  </div>
+    <div data-_id="5b405e513ca7b60014b876d2" class="card">
+    <div class="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href="https://www.nytimes.com/2017/04/03/nytnow/how-to-get-the-most-out-of-your-new-york-times-subscription.html">9 Ways to Get the Most Out of Your Times Subscription</a>
+        <a class="btn btn-success save">Save Article</a>
+      </h3>
+    </div>
+    <div class="card-body">Nine tips from the people who know The Times best: our reporters and editors.</div>
+  </div>
+    <div data-_id="5b405e513ca7b60014b876d1" class="card">
+    <div class="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href="https://www.nytimes.com/2018/07/05/nyregion/kaloyeros-cuomo-percoco-trial.html">Fear and Ambition Distorted Cuomo’s Economic Projects</a>
+        <a class="btn btn-success save">Save Article</a>
+      </h3>
+    </div>
+    <div class="card-body">Prosecutors say that Dr. Alain Kaloyeros was so worried about pleasing Gov. Andrew Cuomo that he rigged state contracts to benefit two donors.</div>
+  </div>
+    <div data-_id="5b405e513ca7b60014b876cf" class="card">
+    <div class="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href="https://www.nytimes.com/2018/07/05/arts/television/sharp-objects-review-amy-adams-hbo.html">‘Sharp Objects,’ a Southern Thriller, Cuts Slow but Deep</a>
+        <a class="btn btn-success save">Save Article</a>
+      </h3>
+    </div>
+    <div class="card-body">Amy Adams is remarkable as a self-destructive reporter in a murder mystery that’s really an investigation into her own past, our critic writes.</div>
+  </div>
+    <div data-_id="5b405e513ca7b60014b876d0" class="card">
+    <div class="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href="https://www.nytimes.com/2018/07/05/upshot/americans-are-having-fewer-babies-they-told-us-why.html">Americans Explain Why They Are Having Fewer Babies</a>
+        <a class="btn btn-success save">Save Article</a>
+      </h3>
+    </div>
+    <div class="card-body">Women have more options, for one. But a new poll also shows that financial insecurity is altering a generation’s choices.</div>
+  </div>
+    <div data-_id="5b405e513ca7b60014b876cb" class="card">
+    <div class="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href="https://www.nytimes.com/interactive/2018/smarter-living/gifts-for-grads-guide-2018.html">Graduation Gift Ideas</a>
+        <a class="btn btn-success save">Save Article</a>
+      </h3>
+    </div>
+    <div class="card-body">Help a graduate in your life get a head start with these great gift ideas, selected with help from Wirecutter.</div>
+  </div>
+    <div data-_id="5b405e513ca7b60014b876ce" class="card">
+    <div class="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href="https://www.nytimes.com/2018/07/06/health/drug-prices-cities.html">What Does a Drug Cost? It Depends on Where You Live</a>
+        <a class="btn btn-success save">Save Article</a>
+      </h3>
+    </div>
+    <div class="card-body">A new analysis of 30 U.S. cities highlights just how unpredictable drug prices can be from coast to coast.</div>
+  </div>
+    <div data-_id="5b405e513ca7b60014b876cc" class="card">
+    <div class="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href="https://www.nytimes.com/2018/07/06/sports/world-cup/brazil-vs-belgium.html">Brazil’s Run Crashes Hard Against Belgium</a>
+        <a class="btn btn-success save">Save Article</a>
+      </h3>
+    </div>
+    <div class="card-body">Brazil’s World Cup effort ended in stunned silence as Belgium eliminated the five-time world champions, 2-1.</div>
+  </div>
+    <div data-_id="5b405e513ca7b60014b876cd" class="card">
+    <div class="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href="https://www.nytimes.com/2018/07/06/us/midterm-congressional-races-california-gas-tax.html">How Congress Could Swing on California’s Gas Tax</a>
+        <a class="btn btn-success save">Save Article</a>
+      </h3>
+    </div>
+    <div class="card-body">A gas tax passed last year was seen as a way for California to rebuild its roads. Now its repeal could be key for Republicans hoping to retain control of Congress.</div>
+  </div>
+    <div data-_id="5b405e513ca7b60014b876ca" class="card">
+    <div class="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href="https://www.nytimes.com/2018/06/15/your-money/hurricane-season-flood-insurance.html">Hurricane Season Has Begun. Do You Need Flood Insurance?</a>
+        <a class="btn btn-success save">Save Article</a>
+      </h3>
+    </div>
+    <div class="card-body">The federal program is about to lapse. But consumer advocates are urging homeowners to get the coverage.</div>
+  </div>
+    <div data-_id="5b405e513ca7b60014b876c9" class="card">
+    <div class="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href="https://www.nytimes.com/2018/07/06/us/california-today-earthquakes-vulnerable-buildings.html">California Today: How Much Is a Safe Building Worth?</a>
+        <a class="btn btn-success save">Save Article</a>
+      </h3>
+    </div>
+    <div class="card-body">A bill in the State Legislature faces an uncertain future, an agreement on net neutrality, and a “margarita-loving bear.”</div>
+  </div>
+    <div data-_id="5b405e513ca7b60014b876c8" class="card">
+    <div class="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href="https://www.nytimes.com/2018/07/06/briefing/migrants-scott-pruitt-world-cup.html">Your Evening Briefing</a>
+        <a class="btn btn-success save">Save Article</a>
+      </h3>
+    </div>
+    <div class="card-body">Here’s what you need to know at the end of the day.</div>
+  </div>
+    <div data-_id="5b405e513ca7b60014b876c7" class="card">
+    <div class="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href="https://www.nytimes.com/2018/07/06/world/asia/thai-cave-rescue-divers.html">The Rescue Will Be a Murky, Desperate Ordeal</a>
+        <a class="btn btn-success save">Save Article</a>
+      </h3>
+    </div>
+    <div class="card-body">Boulders, wild currents, tight passages and thinning air will hinder rescue efforts. We spoke with experienced cave divers.</div>
+  </div>
+    <div data-_id="5b405e513ca7b60014b876c6" class="card">
+    <div class="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href="https://www.nytimes.com/interactive/2018/07/06/world/asia/thai-cave-rescue.html">Inside the Cave: Rescue Efforts in Thailand</a>
+        <a class="btn btn-success save">Save Article</a>
+      </h3>
+    </div>
+    <div class="card-body">Divers have to navigate flooded passages, with some openings as small as 3 feet wide, to rescue 12 boys and their coach.</div>
+  </div>
+    <div data-_id="5b405e513ca7b60014b876c5" class="card">
+    <div class="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href="https://www.nytimes.com/2018/07/07/us/paul-manafort-trial-roanoke.html">Manafort Seeks to Move Trial Away From Washington</a>
+        <a class="btn btn-success save">Save Article</a>
+      </h3>
+    </div>
+    <div class="card-body">Lawyers for Paul Manafort, President Trump’s former campaign chairman, want to move the trial away from the nation’s capital, where they say a fair trial would be “impossible.”</div>
+  </div>
+    <div data-_id="5b405e513ca7b60014b876c4" class="card">
+    <div class="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href="https://www.nytimes.com/2018/07/06/nyregion/ocasio-cortez-effect-election-democrat.html">Next for Ocasio-Cortez: Helping Other Female Outsiders</a>
+        <a class="btn btn-success save">Save Article</a>
+      </h3>
+    </div>
+    <div class="card-body">After Alexandria Ocasio-Cortez’s upset victory in the New York Democratic primary, female candidates have shared volunteer lists, fund-raising tips and moral support.</div>
+  </div>
+    <div data-_id="5b405e513ca7b60014b876c2" class="card">
+    <div class="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href="https://www.nytimes.com/2018/07/06/climate/scott-pruitt-epa-aides.html">Pruitt Lost His Job at E.P.A. But First, He Lost His Loyalists.</a>
+        <a class="btn btn-success save">Save Article</a>
+      </h3>
+    </div>
+    <div class="card-body">Scott Pruitt built an extraordinary team of like-minded officials at the Environmental Protection Agency only to watch many of them question his actions or depart amid scandals.</div>
+  </div>
+    <div data-_id="5b405e513ca7b60014b876c3" class="card">
+    <div class="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href="https://www.nytimes.com/2018/07/06/us/politics/jim-jordan-sexual-misconduct.html">Lawmaker Is Defiant as Accusers Say He Knew of Misconduct</a>
+        <a class="btn btn-success save">Save Article</a>
+      </h3>
+    </div>
+    <div class="card-body">The Ohio congressman Jim Jordan insists he didn’t know that wrestlers on a college team he coached were being abused, and backers say he is the victim of conspirators who are trying to bring down President Trump.</div>
+  </div>
+    <div data-_id="5b405e513ca7b60014b876c1" class="card">
+    <div class="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href="https://www.nytimes.com/2018/07/06/us/army-immigrants-discharge.html">Army Is Discharginga Growing Numberof Immigrants</a>
+        <a class="btn btn-success save">Save Article</a>
+      </h3>
+    </div>
+    <div class="card-body">Lawyers for the foreign-born recruits say at least 30 have been discharged in recent weeks and thousands more are stuck in limbo.</div>
+  </div>
+    <div data-_id="5b405e513ca7b60014b876c0" class="card">
+    <div class="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href="https://www.nytimes.com/2018/07/06/us/immigrants-shelters-schools-border.html">What It Is Like Inside U.S. Migrant Shelter Classrooms</a>
+        <a class="btn btn-success save">Save Article</a>
+      </h3>
+    </div>
+    <div class="card-body">Migrant children detained by immigration authorities must receive five to six hours a day of instruction, under federal law. But how good the schooling is depends on the facility.</div>
+  </div>
+    <div data-_id="5b405e513ca7b60014b876bf" class="card">
+    <div class="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href="https://www.nytimes.com/2018/07/06/world/europe/europe-borders-nationalism-identity.html">Why Europe Could Unravel Over a Question of Borders</a>
+        <a class="btn btn-success save">Save Article</a>
+      </h3>
+    </div>
+    <div class="card-body">As Europeans struggle with the social and political strains set off by migration, some are clamoring to preserve their sense of national identity.</div>
+  </div>
+    <div data-_id="5b405e513ca7b60014b876be" class="card">
+    <div class="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href="https://www.nytimes.com/2018/07/06/us/politics/supreme-court-trump.html">Trump Has a Model for Second Supreme Court Pick. His First.</a>
+        <a class="btn btn-success save">Save Article</a>
+      </h3>
+    </div>
+    <div class="card-body">Mr. Trump views his nomination of Neil M. Gorsuch in January 2017 as one of the unalloyed triumphs of his presidency.</div>
+  </div>
+    <div data-_id="5b405e513ca7b60014b876bd" class="card">
+    <div class="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href="https://www.nytimes.com/2018/07/06/us/politics/trump-special-counsel-interview.html">President’s Lawyers Set New Conditions for Mueller Interview</a>
+        <a class="btn btn-success save">Save Article</a>
+      </h3>
+    </div>
+    <div class="card-body">The president is unlikely to agree to be voluntarily questioned by the special counsel, his lawyer said, signaling a subpoena fight ahead.</div>
+  </div>
+   </div>
+
+<footer class="footer">
+  <div class="container">
+    <p>New York Times Mongo Scraper</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+<script src="/assets/javascript/index.js"></script>
+
+</body>
+
 </html>
+
