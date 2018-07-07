@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/janellguzman/Mongo-Scraper/issues"
   },
-  "homepage": "https://github.com/janellguzman/Mongo-Scraper#readme"
+  "homepage": "https://github.com/janellguzman/Mongo-Scraper#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
 }
